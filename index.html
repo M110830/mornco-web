@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>群瑜股份有限公司 | MORNCO PRODUCTS CO LTD</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #050a14;
+            --bg-section: #08101d; 
+            --bg-card: #112240;    
+            --accent: #3b82f6;     
+            --text-main: #ffffff;
+            --text-dim: #a0aec0;
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* 導覽列 */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; position: fixed; width: 100%; z-index: 100;
+            background: rgba(5, 10, 20, 0.9); backdrop-filter: blur(10px);
+            box-sizing: border-box; border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .logo { font-weight: 700; font-size: 1.1rem; line-height: 1.2; }
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { color: var(--text-main); text-decoration: none; margin-left: 25px; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        .lang-switch {
+            border: 1px solid var(--accent);
+            padding: 4px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 25px;
+            cursor: pointer;
+            background: transparent;
+            color: white;
+            transition: 0.3s;
+        }
+        .lang-switch:hover { background: var(--accent); }
+
+        /* 主視覺區 */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 18vh;
+        }
+        .hero-content { position: relative; z-index: 10; text-align: center; padding: 0 20px; }
+        h1 { font-size: clamp(2.2rem, 6vw, 4rem); letter-spacing: 12px; margin: 10px 0; font-weight: 700; }
+        h1 span { color: var(--accent); }
+
+        .hero-image-layer {
+            position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 100%; height: 75vh;
+            background: url('hero-car.png') no-repeat center bottom;
+            background-size: contain; z-index: 5;
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 85%, transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 85%, transparent 100%);
+            filter: brightness(1.1);
+        }
+
+        /* 技術部品區 */
+        .tech-section { padding: 100px 5%; background-color: var(--bg-section); position: relative; z-index: 20; }
+        .tech-grid { 
+            display: grid; grid-template-columns: repeat(4, 1fr); 
+            gap: 20px; max-width: 1400px; margin: 0 auto; 
+        }
+        .tech-card {
+            background: var(--bg-card); padding: 30px 20px; border-radius: 10px;
+            border: 1px solid rgba(59, 130, 246, 0.2); transition: 0.4s;
+        }
+        .tech-card:hover { border-color: var(--accent); transform: translateY(-8px); }
+        .tech-card h3 { color: var(--text-main); font-size: 1.1rem; margin-bottom: 12px; border-left: 4px solid var(--accent); padding-left: 12px; }
+        .tech-card p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.7; }
+
+        /* 聯絡我們與地圖 */
+        .contact-section { padding: 100px 5%; background-color: var(--bg-deep); display: flex; flex-wrap: wrap; gap: 40px; max-width: 1400px; margin: 0 auto; }
+        .contact-info { flex: 1; min-width: 300px; }
+        .contact-map { flex: 1.5; min-width: 300px; height: 400px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(59, 130, 246, 0.3); }
+        
+        .info-item { margin-bottom: 25px; }
+        .info-item label { color: var(--accent); display: block; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 5px; font-weight: bold; }
+        .info-item p { font-size: 1.1rem; margin: 0; line-height: 1.6; }
+
+        footer { padding: 50px; text-align: center; color: var(--text-dim); font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); }
+
+        @media (max-width: 1200px) { .tech-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { .tech-grid { grid-template-columns: 1fr; } .nav-links a:not(.lang-switch) { display: none; } .contact-section { flex-direction: column; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">群瑜股份有限公司<br><small style="font-size: 0.65rem; opacity: 0.7;">MORNCO PRODUCTS CO LTD</small></div>
+        <div class="nav-links">
+            <a href="#" data-key="nav_home">首頁</a>
+            <a href="#tech" data-key="nav_tech">技術部品</a>
+            <a href="#contact" data-key="nav_contact">聯絡我們</a>
+            <button class="lang-switch" onclick="toggleLang()">ENGLISH</button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p style="letter-spacing: 6px; opacity: 0.6; font-size: 0.9rem; margin-bottom: 15px;">AUTOMOTIVE ELECTRICAL SOLUTIONS</p>
+            <h1 data-key="hero_title">連結安全 <span>驅動未來</span></h1>
+            <p style="color: var(--text-dim); font-size: 1.15rem;" data-key="hero_desc">汽車電裝、全車線束與精密控制開關專家</p>
+        </div>
+        <div class="hero-image-layer"></div>
+    </section>
+
+    <section class="tech-section" id="tech">
+        <h2 style="text-align: center; font-size: 2.2rem; margin-bottom: 60px; letter-spacing: 5px;" data-key="tech_title">核心技術部品</h2>
+        <div class="tech-grid">
+            <div class="tech-card"><h3 data-key="t1_h">頂棚通訊與 ADAS 整合</h3><p data-key="t1_p">整合天線、室內燈與 ICC 智慧駕駛感測器。具備高規格屏蔽效能。</p></div>
+            <div class="tech-card"><h3 data-key="t2_h">座艙舒適控制開關</h3><p data-key="t2_p">包含八向/四向、頂腰、記憶、加熱通風及天窗開關。</p></div>
+            <div class="tech-card"><h3 data-key="t3_h">旋轉式位置感測線組</h3><p data-key="t3_p">採用轉盤角度控制原理，透過物理接點辨識狀態，確保訊號同步。</p></div>
+            <div class="tech-card"><h3 data-key="t4_h">車載高速傳輸模組</h3><p data-key="t4_p">提供高速數據傳輸與智慧快充功能，具備車用 EMC 設計。</p></div>
+            <div class="tech-card"><h3 data-key="t5_h">乘客安全感知系統</h3><p data-key="t5_p">整合 SBR 安全帶未扣警示與 OPDS 成員感知器，連動氣囊模組。</p></div>
+            <div class="tech-card"><h3 data-key="t6_h">多功能方向盤線組</h3><p data-key="t6_p">連結音響、語音控制等。具備高耐疲勞性，確保訊號隨傳隨到。</p></div>
+            <div class="tech-card"><h3 data-key="t7_h">接頭替代與逆向開發</h3><p data-key="t7_p">協助進行國外連接器替代匹配與逆向工程，提供在地化解決方案。</p></div>
+            <div class="tech-card"><h3 data-key="t8_h">客製化線束研發</h3><p data-key="t8_p">針對車廠進行特定規格開發。從設計、打樣至量產測試一站式支援。</p></div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="contact-info">
+            <h2 style="font-size: 2.2rem; letter-spacing: 5px; margin-bottom: 40px;" data-key="contact_title">聯絡我們</h2>
+            <div class="info-item">
+                <label>ADDRESS</label>
+                <p data-key="c_addr_v">新北市土城區中山路1號3樓之3</p>
+            </div>
+            <div class="info-item">
+                <label>TELEPHONE</label>
+                <p>+886-2-2268-3916</p>
+            </div>
+            <div class="info-item">
+                <label>EMAIL</label>
+                <p>mornco@mornco.com.tw</p>
+            </div>
+        </div>
+        <div class="contact-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3616.518641473215!2d121.4316!3d24.9663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34681addd163346b%3A0xc3f837920f66e068!2zMjM25paw5YyX5biC5Zyf5Z-O5Y2A5Lit5bGx6LevMeiZnw!5e0!3m2!1szh-TW!2stw!4v1710000000000!5m2!1szh-TW!2stw" width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg) brightness(0.9);" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 MORNCO PRODUCTS CO LTD. 群瑜股份有限公司</p>
+    </footer>
+
+    <script>
+        const langData = {
+            "zh": {
+                "nav_home": "首頁", "nav_tech": "技術部品", "nav_contact": "聯絡我們",
+                "hero_title": "連結安全 <span>驅動未來</span>",
+                "hero_desc": "汽車電裝、全車線束與精密控制開關專家",
+                "tech_title": "核心技術部品",
+                "t1_h": "頂棚通訊與 ADAS 整合", "t1_p": "整合天線、室內燈與 ICC 智慧駕駛感測器。具備高規格屏蔽效能。",
+                "t2_h": "座艙舒適控制開關", "t2_p": "包含八向/四向、頂腰、記憶、加熱通風及天窗開關。",
+                "t3_h": "旋轉式位置感測線組", "t3_p": "採用轉盤角度控制原理，透過物理接點辨識狀態，確保訊號同步。",
+                "t4_h": "車載高速傳輸模組", "t4_p": "提供高速數據傳輸與智慧快充功能，具備車用 EMC 設計。",
+                "t5_h": "乘客安全感知系統", "t5_p": "整合 SBR 安全帶未扣警示與 OPDS 成員感知器，連動氣囊模組。",
+                "t6_h": "多功能方向盤線組", "t6_p": "連結音響、語音控制等。具備高耐疲勞性，確保訊號隨傳隨到。",
+                "t7_h": "接頭替代與逆向開發", "t7_p": "協助進行國外連接器替代匹配與逆向工程，提供在地化解決方案。",
+                "t8_h": "客製化線束研發", "t8_p": "針對車廠進行特定規格開發。從設計、打樣至量產測試一站式支援。",
+                "contact_title": "聯絡我們", "c_addr_v": "新北市土城區中山路1號3樓之3"
+            },
+            "en": {
+                "nav_home": "HOME", "nav_tech": "TECH PARTS", "nav_contact": "CONTACT",
+                "hero_title": "Linking Safety <span>Driving Future</span>",
+                "hero_desc": "Expert in Automotive Harnesses and Control Switches",
+                "tech_title": "CORE TECHNOLOGY",
+                "t1_h": "Roof & ADAS Integration", "t1_p": "Integrating antennas, interior lights, and ICC sensors with high shielding performance.",
+                "t2_h": "Cabin Comfort Switches", "t2_p": "Multi-way seat adjustment, lumbar support, memory, and heating/ventilation switches.",
+                "t3_h": "Rotary Position Sensors", "t3_p": "Utilizing rotary control principles to identify switch status and ensure signal sync.",
+                "t4_h": "High-Speed Data Modules", "t4_p": "Providing high-speed transmission and smart charging with automotive EMC standards.",
+                "t5_h": "Passenger Safety Systems", "t5_p": "Integrating SBR and OPDS sensors to collaborate with airbag modules.",
+                "t6_h": "Multifunction Steering Harness", "t6_p": "Connecting audio and voice controls with high fatigue resistance for reliable signals.",
+                "t7_h": "Connector Development", "t7_p": "Specializing in connector replacement and reverse engineering for localized solutions.",
+                "t8_h": "Customized R&D Service", "t8_p": "One-stop support from design and prototyping to mass production for OEMs.",
+                "contact_title": "CONTACT US", "c_addr_v": "3F.-3, No. 1, Zhongshan Rd., Tucheng Dist., New Taipei City, Taiwan"
+            }
+        };
+
+        let currentLang = "zh";
+        function toggleLang() {
+            currentLang = currentLang === "zh" ? "en" : "zh";
+            const btn = document.querySelector('.lang-switch');
+            btn.innerText = currentLang === "zh" ? "ENGLISH" : "中文";
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (langData[currentLang][key]) el.innerHTML = langData[currentLang][key];
+            });
+        }
+    </script>
+</body>
+</html>
