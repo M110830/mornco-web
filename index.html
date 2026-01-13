@@ -51,14 +51,8 @@
 
         /* 主視覺區 */
         .hero {
-            position: relative;
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding-top: 18vh;
+            position: relative; height: 100vh; width: 100%;
+            display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 18vh;
         }
         .hero-content { position: relative; z-index: 10; text-align: center; padding: 0 20px; }
         h1 { font-size: clamp(2.2rem, 6vw, 4rem); letter-spacing: 12px; margin: 10px 0; font-weight: 700; }
@@ -74,7 +68,7 @@
             filter: brightness(1.1);
         }
 
-        /* 技術部品區 */
+        /* 技術部品與應用區 */
         .tech-section { padding: 100px 5%; background-color: var(--bg-section); position: relative; z-index: 20; }
         .tech-grid { 
             display: grid; grid-template-columns: repeat(4, 1fr); 
@@ -83,12 +77,13 @@
         .tech-card {
             background: var(--bg-card); padding: 30px 20px; border-radius: 10px;
             border: 1px solid rgba(59, 130, 246, 0.2); transition: 0.4s;
+            display: flex; flex-direction: column;
         }
         .tech-card:hover { border-color: var(--accent); transform: translateY(-8px); }
         .tech-card h3 { color: var(--text-main); font-size: 1.1rem; margin-bottom: 12px; border-left: 4px solid var(--accent); padding-left: 12px; }
-        .tech-card p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.7; }
+        .tech-card p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.7; margin: 0; }
 
-        /* 聯絡我們與地圖 */
+        /* 聯絡我們 */
         .contact-section { padding: 100px 5%; background-color: var(--bg-deep); display: flex; flex-wrap: wrap; gap: 40px; max-width: 1400px; margin: 0 auto; }
         .contact-info { flex: 1; min-width: 300px; }
         .contact-map { flex: 1.5; min-width: 300px; height: 400px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(59, 130, 246, 0.3); }
@@ -125,16 +120,16 @@
     </section>
 
     <section class="tech-section" id="tech">
-        <h2 style="text-align: center; font-size: 2.2rem; margin-bottom: 60px; letter-spacing: 5px;" data-key="tech_title">核心技術部品</h2>
+        <h2 style="text-align: center; font-size: 2.2rem; margin-bottom: 60px; letter-spacing: 5px;" data-key="tech_title">核心技術與應用領域</h2>
         <div class="tech-grid">
-            <div class="tech-card"><h3 data-key="t1_h">頂棚通訊與 ADAS 整合</h3><p data-key="t1_p">整合天線、室內燈與 ICC 智慧駕駛感測器。具備高規格屏蔽效能。</p></div>
-            <div class="tech-card"><h3 data-key="t2_h">座艙舒適控制開關</h3><p data-key="t2_p">包含八向/四向、頂腰、記憶、加熱通風及天窗開關。</p></div>
-            <div class="tech-card"><h3 data-key="t3_h">旋轉式位置感測線組</h3><p data-key="t3_p">採用轉盤角度控制原理，透過物理接點辨識狀態，確保訊號同步。</p></div>
-            <div class="tech-card"><h3 data-key="t4_h">車載高速傳輸模組</h3><p data-key="t4_p">提供高速數據傳輸與智慧快充功能，具備車用 EMC 設計。</p></div>
-            <div class="tech-card"><h3 data-key="t5_h">乘客安全感知系統</h3><p data-key="t5_p">整合 SBR 安全帶未扣警示與 OPDS 成員感知器，連動氣囊模組。</p></div>
-            <div class="tech-card"><h3 data-key="t6_h">多功能方向盤線組</h3><p data-key="t6_p">連結音響、語音控制等。具備高耐疲勞性，確保訊號隨傳隨到。</p></div>
-            <div class="tech-card"><h3 data-key="t7_h">接頭替代與逆向開發</h3><p data-key="t7_p">協助進行國外連接器替代匹配與逆向工程，提供在地化解決方案。</p></div>
-            <div class="tech-card"><h3 data-key="t8_h">客製化線束研發</h3><p data-key="t8_p">針對車廠進行特定規格開發。從設計、打樣至量產測試一站式支援。</p></div>
+            <div class="tech-card"><h3 data-key="t1_h">ADAS 智慧駕駛系統整合</h3><p data-key="t1_p">整合 ICC 智慧駕駛感測器與高規格屏蔽線束，確保數據傳輸零干擾與高穩定性。</p></div>
+            <div class="tech-card"><h3 data-key="t2_h">座艙舒適控制開關</h3><p data-key="t2_p">包含八向/四向、頂腰、記憶、加熱通風及天窗開關之精密線組加工。</p></div>
+            <div class="tech-card"><h3 data-key="t3_h">旋轉式位置感測線組</h3><p data-key="t3_p">採用轉盤角度控制原理，透過精密接點辨識狀態，確保訊號同步回傳。</p></div>
+            <div class="tech-card"><h3 data-key="t4_h">車載高速傳輸模組</h3><p data-key="t4_p">提供高速數據傳輸與智慧快充功能，具備符合車用標準之 EMC 防護設計。</p></div>
+            <div class="tech-card"><h3 data-key="t5_h">乘客安全感知系統</h3><p data-key="t5_p">整合 SBR 安全帶未扣警示與 OPDS 成員感知器，連動氣囊模組守護乘員安全。</p></div>
+            <div class="tech-card"><h3 data-key="t6_h">多功能方向盤線組</h3><p data-key="t6_p">連結音響與語音控制系統。具備高耐疲勞性，確保轉動中訊號隨傳隨到。</p></div>
+            <div class="tech-card"><h3 data-key="t7_h">接頭替代與逆向開發</h3><p data-key="t7_p">協助國外連接器替代匹配與逆向工程，為客戶提供高效的在地化解決方案。</p></div>
+            <div class="tech-card"><h3 data-key="t8_h">跨領域精密連接方案</h3><p data-key="t8_p">承襲車規級研發經驗，將高可靠度連接技術延伸至無人機、電子鎖及機械手臂領域。</p></div>
         </div>
     </section>
 
@@ -155,7 +150,7 @@
             </div>
         </div>
         <div class="contact-map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3616.518641473215!2d121.4316!3d24.9663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34681addd163346b%3A0xc3f837920f66e068!2zMjM25paw5YyX5biC5Zyf5Z-O5Y2A5Lit5bGx6LevMeiZnw!5e0!3m2!1szh-TW!2stw!4v1710000000000!5m2!1szh-TW!2stw" width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg) brightness(0.9);" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3616.486252988456!2d121.4363297!3d24.9835619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34681d4576395b21%3A0x6b49997127110940!2zMjMz5paw5YyX5biC5Zyf5Z-O5Y2A5Lit5bGx6LevMeiZnw!5e0!3m2!1szh-TW!2stw!4v1715600000000!5m2!1szh-TW!2stw" width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg) brightness(0.9);" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </section>
 
@@ -169,30 +164,30 @@
                 "nav_home": "首頁", "nav_tech": "技術部品", "nav_contact": "聯絡我們",
                 "hero_title": "連結安全 <span>驅動未來</span>",
                 "hero_desc": "汽車電裝、全車線束與精密控制開關專家",
-                "tech_title": "核心技術部品",
-                "t1_h": "頂棚通訊與 ADAS 整合", "t1_p": "整合天線、室內燈與 ICC 智慧駕駛感測器。具備高規格屏蔽效能。",
-                "t2_h": "座艙舒適控制開關", "t2_p": "包含八向/四向、頂腰、記憶、加熱通風及天窗開關。",
-                "t3_h": "旋轉式位置感測線組", "t3_p": "採用轉盤角度控制原理，透過物理接點辨識狀態，確保訊號同步。",
-                "t4_h": "車載高速傳輸模組", "t4_p": "提供高速數據傳輸與智慧快充功能，具備車用 EMC 設計。",
-                "t5_h": "乘客安全感知系統", "t5_p": "整合 SBR 安全帶未扣警示與 OPDS 成員感知器，連動氣囊模組。",
-                "t6_h": "多功能方向盤線組", "t6_p": "連結音響、語音控制等。具備高耐疲勞性，確保訊號隨傳隨到。",
-                "t7_h": "接頭替代與逆向開發", "t7_p": "協助進行國外連接器替代匹配與逆向工程，提供在地化解決方案。",
-                "t8_h": "客製化線束研發", "t8_p": "針對車廠進行特定規格開發。從設計、打樣至量產測試一站式支援。",
+                "tech_title": "核心技術與應用領域",
+                "t1_h": "ADAS 智慧駕駛系統整合", "t1_p": "整合 ICC 智慧駕駛感測器與高規格屏蔽線束，確保數據傳輸零干擾與高穩定性。",
+                "t2_h": "座艙舒適控制開關", "t2_p": "包含八向/四向、頂腰、記憶、加熱通風及天窗開關之精密線組加工。",
+                "t3_h": "旋轉式位置感測線組", "t3_p": "採用轉盤角度控制原理，透過精密接點辨識狀態，確保訊號同步回傳。",
+                "t4_h": "車載高速傳輸模組", "t4_p": "提供高速數據傳輸與智慧快充功能，具備符合車用標準之 EMC 防護設計。",
+                "t5_h": "乘客安全感知系統", "t5_p": "整合 SBR 安全帶未扣警示與 OPDS 成員感知器，連動氣囊模組守護乘員安全。",
+                "t6_h": "多功能方向盤線組", "t6_p": "連結音響與語音控制系統。具備高耐疲勞性，確保轉動中訊號隨傳隨到。",
+                "t7_h": "接頭替代與逆向開發", "t7_p": "協助國外連接器替代匹配與逆向工程，為客戶提供高效的在地化解決方案。",
+                "t8_h": "跨領域精密連接方案", "t8_p": "承襲車規級研發經驗，將高可靠度連接技術延伸至無人空拍機、智慧電子鎖及機械手臂等領域。",
                 "contact_title": "聯絡我們", "c_addr_v": "新北市土城區中山路1號3樓之3"
             },
             "en": {
-                "nav_home": "HOME", "nav_tech": "TECH PARTS", "nav_contact": "CONTACT",
+                "nav_home": "HOME", "nav_tech": "TECH & APPS", "nav_contact": "CONTACT",
                 "hero_title": "Linking Safety <span>Driving Future</span>",
                 "hero_desc": "Expert in Automotive Harnesses and Control Switches",
-                "tech_title": "CORE TECHNOLOGY",
-                "t1_h": "Roof & ADAS Integration", "t1_p": "Integrating antennas, interior lights, and ICC sensors with high shielding performance.",
-                "t2_h": "Cabin Comfort Switches", "t2_p": "Multi-way seat adjustment, lumbar support, memory, and heating/ventilation switches.",
-                "t3_h": "Rotary Position Sensors", "t3_p": "Utilizing rotary control principles to identify switch status and ensure signal sync.",
-                "t4_h": "High-Speed Data Modules", "t4_p": "Providing high-speed transmission and smart charging with automotive EMC standards.",
-                "t5_h": "Passenger Safety Systems", "t5_p": "Integrating SBR and OPDS sensors to collaborate with airbag modules.",
-                "t6_h": "Multifunction Steering Harness", "t6_p": "Connecting audio and voice controls with high fatigue resistance for reliable signals.",
-                "t7_h": "Connector Development", "t7_p": "Specializing in connector replacement and reverse engineering for localized solutions.",
-                "t8_h": "Customized R&D Service", "t8_p": "One-stop support from design and prototyping to mass production for OEMs.",
+                "tech_title": "CORE TECHNOLOGY & APPLICATIONS",
+                "t1_h": "ADAS Integration Systems", "t1_p": "Integrating ICC sensors and high-shielding harnesses for stable, interference-free transmission.",
+                "t2_h": "Cabin Comfort Switches", "t2_p": "Harnesses for multi-way seats, lumbar support, memory, and heating/ventilation systems.",
+                "t3_h": "Rotary Position Sensors", "t3_p": "Utilizing rotary contact principles for precise and synchronized signal feedback.",
+                "t4_h": "High-Speed Data Modules", "t4_p": "High-speed data and smart charging modules with automotive-grade EMC protection.",
+                "t5_h": "Passenger Safety Systems", "t5_p": "Integrating SBR and OPDS sensors for reliable airbag module synchronization.",
+                "t6_h": "Steering Wheel Harness", "t6_p": "High-fatigue resistance wiring for audio, voice controls, and synchronized signals.",
+                "t7_h": "Connector Development", "t7_p": "Providing connector replacement and reverse engineering for localized solutions.",
+                "t8_h": "Cross-Industry Solutions", "t8_p": "Leveraging automotive R&D expertise to provide reliable connections for drones, smart locks, and robotics.",
                 "contact_title": "CONTACT US", "c_addr_v": "3F.-3, No. 1, Zhongshan Rd., Tucheng Dist., New Taipei City, Taiwan"
             }
         };
