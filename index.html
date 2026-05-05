@@ -7,11 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0066cc;
-            --primary-dark: #004d99;
-            --bg-light: #f8f9fb;
-            --text-dark: #2d3436;
-            --text-gray: #636e72;
+            --primary: #0056b3;
+            --secondary: #3498db;
+            --bg-light: #f4f7f9;
+            --text-main: #2c3e50;
+            --text-sub: #5d6d7e;
             --white: #ffffff;
         }
 
@@ -19,152 +19,209 @@
             margin: 0; padding: 0;
             font-family: 'Noto Sans TC', sans-serif;
             background-color: var(--white);
-            color: var(--text-dark);
+            color: var(--text-main);
             scroll-behavior: smooth;
         }
 
+        /* 導覽列 */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 8%; position: fixed; width: 100%; z-index: 1000;
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
-            box-sizing: border-box; border-bottom: 1px solid #eee;
+            padding: 15px 5%; position: fixed; width: 100%; z-index: 1000;
+            background: rgba(255, 255, 255, 0.98); border-bottom: 1px solid #eaeaea;
+            box-sizing: border-box;
         }
-        .logo { font-weight: 700; font-size: 1.1rem; color: var(--primary); }
-        .logo small { display: block; font-size: 0.65rem; color: var(--text-gray); }
+        .logo { line-height: 1.2; }
+        .logo b { font-size: 1.2rem; color: var(--primary); display: block; }
+        .logo small { font-size: 0.7rem; color: var(--text-sub); letter-spacing: 0.5px; }
+
+        .nav-links a { text-decoration: none; color: var(--text-main); margin-left: 25px; font-size: 0.95rem; font-weight: 500; }
+        .nav-links a:hover { color: var(--secondary); }
         
-        .nav-links a { color: var(--text-dark); text-decoration: none; margin-left: 25px; font-size: 0.9rem; transition: 0.3s; }
-        .nav-links a:hover { color: var(--primary); }
-
-        .lang-switch {
-            border: 1px solid var(--primary);
-            padding: 4px 15px; border-radius: 4px;
-            font-size: 0.8rem; margin-left: 20px;
-            cursor: pointer; background: transparent; color: var(--primary);
+        .lang-btn {
+            background: var(--primary); color: white; border: none; padding: 6px 15px;
+            border-radius: 4px; cursor: pointer; margin-left: 20px; font-weight: bold;
         }
 
-        /* Hero 區域 - 使用 SVG 避免版權問題 */
+        /* Hero 視覺優化 - 使用科技感漸層取代圖片 */
         .hero {
-            padding: 140px 8% 80px; display: flex; align-items: center;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 60vh;
+            padding: 160px 5% 100px;
+            background: radial-gradient(circle at top right, #e0f2fe 0%, #ffffff 50%);
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; position: relative; overflow: hidden;
         }
-        .hero-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; width: 100%; max-width: 1200px; margin: 0 auto; }
-        
-        .hero-svg { width: 100%; height: auto; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.1)); }
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 40px 40px; opacity: 0.3; z-index: 1;
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 900px; }
+        .hero h1 { font-size: 3.2rem; margin-bottom: 20px; letter-spacing: 2px; }
+        .hero h1 span { color: var(--secondary); }
+        .hero p { font-size: 1.25rem; color: var(--text-sub); margin-bottom: 40px; }
 
-        .tech-section { padding: 80px 8%; background: var(--bg-light); }
-        .tech-grid { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-            gap: 25px; max-width: 1200px; margin: 40px auto 0; 
+        /* 技術部品卡片區 */
+        .tech-section { padding: 100px 5%; background: var(--bg-light); }
+        .tech-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px; max-width: 1300px; margin: 0 auto;
         }
         .tech-card {
-            background: var(--white); padding: 30px; border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s;
+            background: var(--white); padding: 35px 25px; border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: all 0.3s ease;
+            border: 1px solid transparent;
         }
-        .tech-card:hover { transform: translateY(-5px); border-top: 4px solid var(--primary); }
+        .tech-card:hover { transform: translateY(-8px); border-color: var(--secondary); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
+        .tech-card h3 { color: var(--primary); font-size: 1.2rem; margin-bottom: 15px; border-left: 4px solid var(--secondary); padding-left: 12px; }
+        .tech-card p { font-size: 0.95rem; color: var(--text-sub); line-height: 1.7; }
 
-        .contact-section { padding: 80px 8%; max-width: 1200px; margin: 0 auto; }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; }
+        /* 聯絡資訊與地圖 */
+        .contact-section { padding: 100px 5%; max-width: 1300px; margin: 0 auto; }
+        .contact-container { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; }
+        
+        .contact-info h2 { font-size: 2rem; margin-bottom: 30px; }
+        .info-item { margin-bottom: 25px; }
+        .info-item label { display: block; color: var(--secondary); font-weight: bold; font-size: 0.85rem; margin-bottom: 5px; }
+        .info-item p { font-size: 1.1rem; margin: 0; }
 
-        /* 地圖修復 */
-        .map-container {
-            width: 100%; height: 350px; border-radius: 10px; overflow: hidden;
-            border: 1px solid #ddd; margin-top: 20px;
+        .map-box { width: 100%; height: 350px; border-radius: 12px; overflow: hidden; border: 1px solid #ddd; margin-top: 30px; }
+
+        form { background: #fff; padding: 40px; border-radius: 12px; border: 1px solid #eee; box-shadow: 0 5px 15px rgba(0,0,0,0.02); }
+        .form-group { margin-bottom: 20px; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; outline: none; font-size: 1rem; box-sizing: border-box;
         }
-
-        .btn-submit {
-            background: var(--primary); color: white; border: none;
-            padding: 12px 25px; border-radius: 5px; cursor: pointer; width: 100%;
+        .form-group input:focus { border-color: var(--secondary); }
+        .submit-btn {
+            width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 6px;
+            font-weight: bold; cursor: pointer; transition: 0.3s;
         }
+        .submit-btn:hover { background: #004494; }
 
-        footer { text-align: center; padding: 40px; background: #f1f1f1; color: var(--text-gray); font-size: 0.8rem; }
+        footer { text-align: center; padding: 50px; background: #2c3e50; color: #bdc3c7; font-size: 0.85rem; }
 
-        @media (max-width: 768px) {
-            .hero-container, .contact-grid { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 992px) { .contact-container { grid-template-columns: 1fr; } .hero h1 { font-size: 2.4rem; } }
     </style>
 </head>
 <body>
 
     <nav>
         <div class="logo">
-            <span id="comp-name">群瑜股份有限公司</span>
+            <b id="comp-name">群瑜股份有限公司</b>
             <small>MORNCO PRODUCTS CO LTD</small>
         </div>
         <div class="nav-links">
-            <a href="#">首頁</a>
-            <a href="#tech">核心技術</a>
-            <a href="#contact">聯絡我們</a>
-            <button class="lang-switch" onclick="toggleLang()">ENGLISH</button>
+            <a href="#" data-key="nav_home">首頁</a>
+            <a href="#tech" data-key="nav_tech">技術部品</a>
+            <a href="#contact" data-key="nav_contact">聯絡我們</a>
+            <button class="lang-btn" onclick="toggleLang()">EN</button>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="hero-container">
-            <div class="hero-text">
-                <h1 style="font-size: 2.8rem; margin-bottom: 20px;" id="hero-title">群瑜安全 <span>驅動未來</span></h1>
-                <p style="color: var(--text-gray); font-size: 1.1rem; margin-bottom: 30px;">專業汽車電裝、全車線束與精密控制開關專家</p>
-                <a href="#contact" style="background: var(--primary); color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;">聯繫專家</a>
-            </div>
-            <div class="hero-image">
-                <!-- 使用抽象的汽車線條圖 (SVG) 避免侵權 -->
-                <svg class="hero-svg" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M50,150 L450,150 L430,100 L350,80 L150,80 L70,100 Z" fill="none" stroke="#0066cc" stroke-width="3"/>
-                    <circle cx="120" cy="150" r="30" fill="white" stroke="#0066cc" stroke-width="3"/>
-                    <circle cx="380" cy="150" r="30" fill="white" stroke="#0066cc" stroke-width="3"/>
-                    <path d="M150,80 L180,40 L320,40 L350,80" fill="none" stroke="#0066cc" stroke-width="2"/>
-                    <!-- 象徵電路的點綴 -->
-                    <circle cx="250" cy="110" r="5" fill="#33a1fd" />
-                    <line x1="250" y1="110" x2="300" y2="110" stroke="#33a1fd" stroke-dasharray="4" />
-                </svg>
-            </div>
+        <div class="hero-content">
+            <p style="letter-spacing: 4px; font-weight: bold; color: var(--secondary);">MORNCO AUTOMOTIVE SOLUTIONS</p>
+            <h1 id="hero-title">連結安全 <span>驅動未來</span></h1>
+            <p id="hero-desc">專業汽車電裝、全車線束與精密控制開關製造專家</p>
+            <a href="#contact" style="background: var(--primary); color: white; padding: 15px 40px; text-decoration: none; border-radius: 30px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,86,179,0.3);">諮詢專業方案</a>
         </div>
     </section>
 
     <section class="tech-section" id="tech">
-        <h2 style="text-align: center;">核心技術</h2>
+        <h2 style="text-align: center; margin-bottom: 60px; font-size: 2.2rem;" id="tech-title">核心技術與應用領域</h2>
         <div class="tech-grid">
-            <div class="tech-card"><h3>ADAS 系統整合</h3><p>高規格屏蔽線束，確保數據傳輸穩定。</p></div>
-            <div class="tech-card"><h3>座艙舒適控制</h3><p>精密控制開關與線組加工。</p></div>
-            <div class="tech-card"><h3>多功能方向盤</h3><p>高耐疲勞性設計，訊號精準傳達。</p></div>
-            <div class="tech-card"><h3>電動門控系統</h3><p>符合車規標準之安全連接設計。</p></div>
+            <div class="tech-card">
+                <h3 data-key="t1_h">ADAS 智慧駕駛系統整合</h3>
+                <p data-key="t1_p">整合 ICC 智慧駕駛感測器與高規格屏蔽線束，確保數據傳輸零干擾與高穩定性。</p>
+            </div>
+            <div class="tech-card">
+                <h3 data-key="t6_h">多功能方向盤線組</h3>
+                <p data-key="t6_p">連結音響與語音控制系統。具備高耐疲勞性，確保轉動中訊號隨傳隨到。</p>
+            </div>
+            <div class="tech-card">
+                <h3 data-key="t2_h">座艙舒適控制開關</h3>
+                <p data-key="t2_p">包含八向/四向、頂腰、記憶、加熱通風及天窗開關之精密線組加工。</p>
+            </div>
+            <div class="tech-card">
+                <h3 data-key="t4_h">電動滑門控制系統</h3>
+                <p data-key="t4_p">具備高耐用度與防夾功能，整合符合車規標準之安全連接設計。</p>
+            </div>
+            <div class="tech-card">
+                <h3 data-key="t5_h">乘客安全感知系統</h3>
+                <p data-key="t5_p">整合 SBR 安全帶未扣警示與 OPDS 成員感知器，連動氣囊模組守護乘員安全。</p>
+            </div>
+            <div class="tech-card">
+                <h3 data-key="t3_h">智慧尾門驅動線組</h3>
+                <p data-key="t3_p">採用轉盤角度控制原理，透過精密接點辨識狀態，確保訊號同步回傳。</p>
+            </div>
+            <div class="tech-card">
+                <h3 data-key="t7_h">接頭替代與逆向開發</h3>
+                <p data-key="t7_p">協助國外連接器替代匹配與逆向工程，為客戶提供高效的在地化解決方案。</p>
+            </div>
+            <div class="tech-card">
+                <h3 data-key="t8_h">跨領域精密連接方案</h3>
+                <p data-key="t8_p">將車規級研發經驗延伸至無人機、電子鎖及機械手臂等精密工業領域。</p>
+            </div>
         </div>
     </section>
 
     <section class="contact-section" id="contact">
-        <div class="contact-grid">
-            <div>
-                <h2>聯絡我們</h2>
-                <p><strong>地址：</strong>新北市土城區中山路1號3樓之3</p>
-                <p><strong>電話：</strong>+886-2-2268-3916</p>
-                <p><strong>信箱：</strong>mornco@mornco.com.tw</p>
-                
-                <!-- 修復後的 Google 地圖 -->
-                <div class="map-container">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3617.203!2d121.436!3d24.959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346802ce5255446f%3A0xc3437c37e69c5e53!2zMjM25paw5YyX5biC5Zyf5Z-O5Y2A5Lit5bGx6LevMeiZnzM!5e0!3m2!1szh-TW!2stw!4v1700000000000" 
-                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-                    </iframe>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2 id="contact-title">聯絡我們</h2>
+                <div class="info-item">
+                    <label>ADDRESS</label>
+                    <p id="c-addr">新北市土城區中山路1號3樓之3</p>
+                </div>
+                <div class="info-item">
+                    <label>TELEPHONE</label>
+                    <p>+886-2-2268-3916</p>
+                </div>
+                <div class="info-item">
+                    <label>EMAIL</label>
+                    <p>mornco@mornco.com.tw</p>
+                </div>
+                <div class="map-box">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3617.2033069411984!2d121.4363435150048!3d24.95922658400787!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346802ce5255446f%3A0xc3437c37e69c5e53!2zMjM25paw5YyX5biC5Zyf5Z-O5Y2A5Lit5bGx6LevMeiZnzM!5e0!3m2!1szh-TW!2stw!4v1621234567890!5m2!1szh-TW!2stw" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
-            <div style="background: #fdfdfd; padding: 30px; border-radius: 10px; border: 1px solid #eee;">
-                <form>
-                    <input type="text" placeholder="您的姓名" style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #ddd; border-radius:5px;">
-                    <input type="email" placeholder="電子郵件" style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #ddd; border-radius:5px;">
-                    <textarea placeholder="需求訊息" rows="6" style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #ddd; border-radius:5px;"></textarea>
-                    <button class="btn-submit">送出訊息</button>
-                </form>
-            </div>
+            <form id="contact-form">
+                <div class="form-group"><input type="text" placeholder="您的姓名 / Name" required></div>
+                <div class="form-group"><input type="email" placeholder="電子郵件 / Email" required></div>
+                <div class="form-group"><input type="text" placeholder="詢問主題 / Subject"></div>
+                <div class="form-group"><textarea rows="8" placeholder="請描述您的需求..." required></textarea></div>
+                <button type="submit" class="submit-btn" id="send-btn">傳送詢問信件 SEND MESSAGE</button>
+            </form>
         </div>
     </section>
 
     <footer>
-        © 2026 MORNCO PRODUCTS CO LTD. 群瑜股份有限公司
+        <p>© 2026 MORNCO PRODUCTS CO LTD. 群瑜股份有限公司 | 汽車電裝與線束專家</p>
     </footer>
 
     <script>
+        const data = {
+            zh: {
+                title: "連結安全 <span>驅動未來</span>",
+                desc: "專業汽車電裝、全車線束與精密控制開關製造專家",
+                comp: "群瑜股份有限公司",
+                addr: "新北市土城區中山路1號3樓之3"
+            },
+            en: {
+                title: "Linking Safety <span>Driving Future</span>",
+                desc: "Expert in Automotive Harnesses and Control Switches",
+                comp: "MORNCO PRODUCTS CO LTD",
+                addr: "3F.-3, No. 1, Zhongshan Rd., Tucheng Dist., New Taipei City"
+            }
+        };
+
+        let lang = 'zh';
         function toggleLang() {
-            alert("雙語切換功能已就緒，可根據之前定義的 langData 擴充內容。");
+            lang = lang === 'zh' ? 'en' : 'zh';
+            document.getElementById('hero-title').innerHTML = data[lang].title;
+            document.getElementById('hero-desc').innerText = data[lang].desc;
+            document.getElementById('comp-name').innerText = data[lang].comp;
+            document.getElementById('c-addr').innerText = data[lang].addr;
+            document.querySelector('.lang-btn').innerText = lang === 'zh' ? 'EN' : '中文';
         }
     </script>
 </body>
