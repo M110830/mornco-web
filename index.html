@@ -30,7 +30,6 @@
             background: rgba(255, 255, 255, 0.98); border-bottom: 1px solid #eaeaea;
             box-sizing: border-box;
         }
-        .logo { line-height: 1.2; }
         .logo b { font-size: 1.2rem; color: var(--primary); display: block; }
         .logo small { font-size: 0.7rem; color: var(--text-sub); letter-spacing: 0.5px; }
 
@@ -42,187 +41,189 @@
             border-radius: 4px; cursor: pointer; margin-left: 20px; font-weight: bold;
         }
 
-        /* Hero 視覺優化 - 使用科技感漸層取代圖片 */
+        /* Hero 視覺 */
         .hero {
             padding: 160px 5% 100px;
             background: radial-gradient(circle at top right, #e0f2fe 0%, #ffffff 50%);
             display: flex; align-items: center; justify-content: center;
-            text-align: center; position: relative; overflow: hidden;
-        }
-        .hero::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
-            background-size: 40px 40px; opacity: 0.3; z-index: 1;
+            text-align: center; position: relative;
         }
         .hero-content { position: relative; z-index: 2; max-width: 900px; }
-        .hero h1 { font-size: 3.2rem; margin-bottom: 20px; letter-spacing: 2px; }
+        .hero h1 { font-size: 3.2rem; margin-bottom: 20px; }
         .hero h1 span { color: var(--secondary); }
-        .hero p { font-size: 1.25rem; color: var(--text-sub); margin-bottom: 40px; }
 
-        /* 技術部品卡片區 */
-        .tech-section { padding: 100px 5%; background: var(--bg-light); }
+        /* 技術部品卡片 */
+        .tech-section { padding: 80px 5%; background: var(--bg-light); }
         .tech-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px; max-width: 1300px; margin: 0 auto;
         }
         .tech-card {
             background: var(--white); padding: 35px 25px; border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: all 0.3s ease;
-            border: 1px solid transparent;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: 0.3s;
+            cursor: pointer; border: 1px solid transparent;
         }
-        .tech-card:hover { transform: translateY(-8px); border-color: var(--secondary); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
+        .tech-card:hover { transform: translateY(-8px); border-color: var(--secondary); }
         .tech-card h3 { color: var(--primary); font-size: 1.2rem; margin-bottom: 15px; border-left: 4px solid var(--secondary); padding-left: 12px; }
-        .tech-card p { font-size: 0.95rem; color: var(--text-sub); line-height: 1.7; }
+        .view-btn { font-size: 0.8rem; color: var(--secondary); font-weight: bold; margin-top: 15px; display: block; }
 
-        /* 聯絡資訊與地圖 */
-        .contact-section { padding: 100px 5%; max-width: 1300px; margin: 0 auto; }
+        /* 圖片彈窗 Lightbox */
+        .modal {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0;
+            width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            max-width: 90%; max-height: 80vh; border-radius: 8px;
+        }
+        .close-modal { position: absolute; top: 30px; right: 50px; color: white; font-size: 40px; cursor: pointer; }
+
+        /* 聯絡資訊 */
+        .contact-section { padding: 80px 5%; max-width: 1300px; margin: 0 auto; }
         .contact-container { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; }
-        
-        .contact-info h2 { font-size: 2rem; margin-bottom: 30px; }
-        .info-item { margin-bottom: 25px; }
-        .info-item label { display: block; color: var(--secondary); font-weight: bold; font-size: 0.85rem; margin-bottom: 5px; }
-        .info-item p { font-size: 1.1rem; margin: 0; }
+        .map-box { width: 100%; height: 350px; border-radius: 12px; overflow: hidden; border: 1px solid #ddd; margin-top: 20px; }
 
-        .map-box { width: 100%; height: 350px; border-radius: 12px; overflow: hidden; border: 1px solid #ddd; margin-top: 30px; }
+        footer { text-align: center; padding: 40px; background: #2c3e50; color: #bdc3c7; }
 
-        form { background: #fff; padding: 40px; border-radius: 12px; border: 1px solid #eee; box-shadow: 0 5px 15px rgba(0,0,0,0.02); }
-        .form-group { margin-bottom: 20px; }
-        .form-group input, .form-group textarea {
-            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; outline: none; font-size: 1rem; box-sizing: border-box;
-        }
-        .form-group input:focus { border-color: var(--secondary); }
-        .submit-btn {
-            width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 6px;
-            font-weight: bold; cursor: pointer; transition: 0.3s;
-        }
-        .submit-btn:hover { background: #004494; }
-
-        footer { text-align: center; padding: 50px; background: #2c3e50; color: #bdc3c7; font-size: 0.85rem; }
-
-        @media (max-width: 992px) { .contact-container { grid-template-columns: 1fr; } .hero h1 { font-size: 2.4rem; } }
+        @media (max-width: 992px) { .contact-container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
     <nav>
         <div class="logo">
-            <b id="comp-name">群瑜股份有限公司</b>
+            <b id="nav-comp-name">群瑜股份有限公司</b>
             <small>MORNCO PRODUCTS CO LTD</small>
         </div>
         <div class="nav-links">
-            <a href="#" data-key="nav_home">首頁</a>
-            <a href="#tech" data-key="nav_tech">技術部品</a>
-            <a href="#contact" data-key="nav_contact">聯絡我們</a>
+            <a href="#" id="nav-home">首頁</a>
+            <a href="#tech" id="nav-tech">技術部品</a>
+            <a href="#contact" id="nav-contact">聯絡我們</a>
             <button class="lang-btn" onclick="toggleLang()">EN</button>
         </div>
     </nav>
 
     <section class="hero">
         <div class="hero-content">
-            <p style="letter-spacing: 4px; font-weight: bold; color: var(--secondary);">MORNCO AUTOMOTIVE SOLUTIONS</p>
             <h1 id="hero-title">連結安全 <span>驅動未來</span></h1>
             <p id="hero-desc">專業汽車電裝、全車線束與精密控制開關製造專家</p>
-            <a href="#contact" style="background: var(--primary); color: white; padding: 15px 40px; text-decoration: none; border-radius: 30px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,86,179,0.3);">諮詢專業方案</a>
         </div>
     </section>
 
     <section class="tech-section" id="tech">
-        <h2 style="text-align: center; margin-bottom: 60px; font-size: 2.2rem;" id="tech-title">核心技術與應用領域</h2>
-        <div class="tech-grid">
-            <div class="tech-card">
-                <h3 data-key="t1_h">ADAS 智慧駕駛系統整合</h3>
-                <p data-key="t1_p">整合 ICC 智慧駕駛感測器與高規格屏蔽線束，確保數據傳輸零干擾與高穩定性。</p>
-            </div>
-            <div class="tech-card">
-                <h3 data-key="t6_h">多功能方向盤線組</h3>
-                <p data-key="t6_p">連結音響與語音控制系統。具備高耐疲勞性，確保轉動中訊號隨傳隨到。</p>
-            </div>
-            <div class="tech-card">
-                <h3 data-key="t2_h">座艙舒適控制開關</h3>
-                <p data-key="t2_p">包含八向/四向、頂腰、記憶、加熱通風及天窗開關之精密線組加工。</p>
-            </div>
-            <div class="tech-card">
-                <h3 data-key="t4_h">電動滑門控制系統</h3>
-                <p data-key="t4_p">具備高耐用度與防夾功能，整合符合車規標準之安全連接設計。</p>
-            </div>
-            <div class="tech-card">
-                <h3 data-key="t5_h">乘客安全感知系統</h3>
-                <p data-key="t5_p">整合 SBR 安全帶未扣警示與 OPDS 成員感知器，連動氣囊模組守護乘員安全。</p>
-            </div>
-            <div class="tech-card">
-                <h3 data-key="t3_h">智慧尾門驅動線組</h3>
-                <p data-key="t3_p">採用轉盤角度控制原理，透過精密接點辨識狀態，確保訊號同步回傳。</p>
-            </div>
-            <div class="tech-card">
-                <h3 data-key="t7_h">接頭替代與逆向開發</h3>
-                <p data-key="t7_p">協助國外連接器替代匹配與逆向工程，為客戶提供高效的在地化解決方案。</p>
-            </div>
-            <div class="tech-card">
-                <h3 data-key="t8_h">跨領域精密連接方案</h3>
-                <p data-key="t8_p">將車規級研發經驗延伸至無人機、電子鎖及機械手臂等精密工業領域。</p>
-            </div>
+        <h2 style="text-align: center; margin-bottom: 50px;" id="tech-title">核心技術與應用領域</h2>
+        <div class="tech-grid" id="tech-grid">
+            <!-- 由 JS 動態生成以確保雙語同步 -->
         </div>
     </section>
+
+    <!-- 圖片彈窗 -->
+    <div id="imgModal" class="modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImg">
+        <div id="modalCaption" style="color:white; text-align:center; margin-top:15px; font-weight:bold;"></div>
+    </div>
 
     <section class="contact-section" id="contact">
         <div class="contact-container">
             <div class="contact-info">
                 <h2 id="contact-title">聯絡我們</h2>
-                <div class="info-item">
-                    <label>ADDRESS</label>
-                    <p id="c-addr">新北市土城區中山路1號3樓之3</p>
-                </div>
-                <div class="info-item">
-                    <label>TELEPHONE</label>
-                    <p>+886-2-2268-3916</p>
-                </div>
-                <div class="info-item">
-                    <label>EMAIL</label>
-                    <p>mornco@mornco.com.tw</p>
-                </div>
+                <p><strong id="label-addr">地址：</strong><span id="c-addr">新北市土城區中山路1號3樓之3</span></p>
+                <p><strong>TEL：</strong>+886-2-2268-3916</p>
+                <p><strong>Email：</strong>mornco@mornco.com.tw</p>
                 <div class="map-box">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3617.2033069411984!2d121.4363435150048!3d24.95922658400787!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346802ce5255446f%3A0xc3437c37e69c5e53!2zMjM25paw5YyX5biC5Zyf5Z-O5Y2A5Lit5bGx6LevMeiZnzM!5e0!3m2!1szh-TW!2stw!4v1621234567890!5m2!1szh-TW!2stw" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3617.2033069411984!2d121.4363435150048!3d24.95922658400787!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346802ce5255446f%3A0xc3437c37e69c5e53!2zMjM25paw5YyX5biC5Zyf5Z-O5Y2A5Lit5bGx6LevMeiZnzM!5e0!3m2!1szh-TW!2stw!4v1621234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
-            <form id="contact-form">
-                <div class="form-group"><input type="text" placeholder="您的姓名 / Name" required></div>
-                <div class="form-group"><input type="email" placeholder="電子郵件 / Email" required></div>
-                <div class="form-group"><input type="text" placeholder="詢問主題 / Subject"></div>
-                <div class="form-group"><textarea rows="8" placeholder="請描述您的需求..." required></textarea></div>
-                <button type="submit" class="submit-btn" id="send-btn">傳送詢問信件 SEND MESSAGE</button>
+            <form>
+                <input type="text" placeholder="Name" style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #ddd; border-radius:6px;">
+                <textarea rows="8" placeholder="Message" style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #ddd; border-radius:6px;"></textarea>
+                <button type="submit" class="lang-btn" style="width:100%; margin:0; padding:15px;" id="send-btn">傳送訊息 SEND</button>
             </form>
         </div>
     </section>
 
-    <footer>
-        <p>© 2026 MORNCO PRODUCTS CO LTD. 群瑜股份有限公司 | 汽車電裝與線束專家</p>
-    </footer>
-
     <script>
-        const data = {
+        const langData = {
             zh: {
-                title: "連結安全 <span>驅動未來</span>",
-                desc: "專業汽車電裝、全車線束與精密控制開關製造專家",
-                comp: "群瑜股份有限公司",
-                addr: "新北市土城區中山路1號3樓之3"
+                nav_home: "首頁", nav_tech: "技術部品", nav_contact: "聯絡我們",
+                comp: "群瑜股份有限公司", addr: "新北市土城區中山路1號3樓之3", label_addr: "地址：",
+                hero_t: "連結安全 <span>驅動未來</span>", hero_d: "專業汽車電裝、全車線束與精密控制開關製造專家",
+                tech_t: "核心技術與應用領域", send: "傳送訊息 SEND",
+                items: [
+                    {h: "ADAS 智慧駕駛系統整合", p: "整合 ICC 智慧駕駛感測器與高規格屏蔽線束。", img: "adas.jpg"},
+                    {h: "多功能方向盤線組", p: "高耐疲勞性，確保轉動中訊號隨傳隨到。", img: "steering.jpg"},
+                    {h: "座艙舒適控制開關", p: "包含座椅、記憶、加熱通風精密線組。", img: "comfort.jpg"},
+                    {h: "電動滑門控制系統", p: "具備高耐用度與防夾功能。", img: "sliding_door.jpg"},
+                    {h: "乘客安全感知系統", p: "整合 SBR 與 OPDS 感知器守護乘員安全。", img: "safety.jpg"},
+                    {h: "智慧尾門驅動線組", p: "精密接點辨識狀態，確保訊號同步。", img: "tailgate.jpg"},
+                    {h: "接頭替代與逆向開發", p: "協助連接器替代匹配與逆向工程。", img: "reverse.jpg"},
+                    {h: "跨領域精密連接方案", p: "延伸至無人機、電子鎖及機械手臂。", img: "industry.jpg"}
+                ]
             },
             en: {
-                title: "Linking Safety <span>Driving Future</span>",
-                desc: "Expert in Automotive Harnesses and Control Switches",
-                comp: "MORNCO PRODUCTS CO LTD",
-                addr: "3F.-3, No. 1, Zhongshan Rd., Tucheng Dist., New Taipei City"
+                nav_home: "Home", nav_tech: "Technologies", nav_contact: "Contact",
+                comp: "MORNCO PRODUCTS CO LTD", addr: "3F.-3, No. 1, Zhongshan Rd., Tucheng Dist., New Taipei", label_addr: "Address: ",
+                hero_t: "Linking Safety <span>Driving Future</span>", hero_d: "Expert in Automotive Harnesses and Control Switches",
+                tech_t: "Core Technology & Applications", send: "SEND MESSAGE",
+                items: [
+                    {h: "ADAS Integration Systems", p: "Integrating ICC sensors and high-shielding harnesses.", img: "adas.jpg"},
+                    {h: "Steering Wheel Harness", p: "High-fatigue resistance wiring for voice controls.", img: "steering.jpg"},
+                    {h: "Cabin Comfort Switches", p: "Harnesses for multi-way seats and ventilation.", img: "comfort.jpg"},
+                    {h: "Sliding Door Systems", p: "High durability and anti-pinch functions.", img: "sliding_door.jpg"},
+                    {h: "Passenger Safety Systems", p: "Integrating SBR and OPDS sensors.", img: "safety.jpg"},
+                    {h: "Power Tailgate Harness", p: "Precise rotary contact signal feedback.", img: "tailgate.jpg"},
+                    {h: "Connector Development", p: "Connector replacement and reverse engineering.", img: "reverse.jpg"},
+                    {h: "Cross-Industry Solutions", p: "Reliable connections for drones and robotics.", img: "industry.jpg"}
+                ]
             }
         };
 
-        let lang = 'zh';
-        function toggleLang() {
-            lang = lang === 'zh' ? 'en' : 'zh';
-            document.getElementById('hero-title').innerHTML = data[lang].title;
-            document.getElementById('hero-desc').innerText = data[lang].desc;
-            document.getElementById('comp-name').innerText = data[lang].comp;
-            document.getElementById('c-addr').innerText = data[lang].addr;
-            document.querySelector('.lang-btn').innerText = lang === 'zh' ? 'EN' : '中文';
+        let currentLang = 'zh';
+
+        function renderTech() {
+            const grid = document.getElementById('tech-grid');
+            grid.innerHTML = '';
+            langData[currentLang].items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'tech-card';
+                card.onclick = () => openImg(item.img, item.h);
+                card.innerHTML = `<h3>${item.h}</h3><p>${item.p}</p><span class="view-btn">+ View Photo</span>`;
+                grid.appendChild(card);
+            });
         }
+
+        function toggleLang() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            const d = langData[currentLang];
+            document.getElementById('nav-home').innerText = d.nav_home;
+            document.getElementById('nav-tech').innerText = d.nav_tech;
+            document.getElementById('nav-contact').innerText = d.nav_contact;
+            document.getElementById('nav-comp-name').innerText = d.comp;
+            document.getElementById('hero-title').innerHTML = d.hero_t;
+            document.getElementById('hero-desc').innerText = d.hero_d;
+            document.getElementById('tech-title').innerText = d.tech_t;
+            document.getElementById('contact-title').innerText = d.nav_contact;
+            document.getElementById('c-addr').innerText = d.addr;
+            document.getElementById('label-addr').innerText = d.label_addr;
+            document.getElementById('send-btn').innerText = d.send;
+            document.querySelector('.lang-btn').innerText = currentLang === 'zh' ? 'EN' : '中文';
+            renderTech();
+        }
+
+        function openImg(src, title) {
+            const modal = document.getElementById('imgModal');
+            const modalImg = document.getElementById('modalImg');
+            modalImg.src = src;
+            modalImg.onerror = () => { modalImg.src = "https://placehold.co/600x400?text=Photo+Coming+Soon"; };
+            document.getElementById('modalCaption').innerText = title;
+            modal.style.display = "block";
+        }
+
+        function closeModal() { document.getElementById('imgModal').style.display = "none"; }
+        window.onclick = (e) => { if(e.target == document.getElementById('imgModal')) closeModal(); };
+
+        renderTech(); // 初始化
     </script>
 </body>
 </html>
